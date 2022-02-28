@@ -26,6 +26,4 @@ app.use(express.json()); //use json files
  app.use('/api/user',userRoute);
  app.use('/api/movies',movieRoute);
  app.use('/api/list',listRoute);
-app.listen(3003,()=>{
-    console.log("Backend server is running");
-})
+app.listen(process.env.PORT || 5000)
