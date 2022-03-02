@@ -2,12 +2,14 @@ const express=require("express");
 const app =express();
 const mongoose=require("mongoose");
 const dotenv=require("dotenv");
+const path = require('path');
 //Register the route
 const authRoute=require("./routes/auth");
 const userRoute=require("./routes/Users");
 const movieRoute=require("./routes/Movie");
 const listRoute=require("./routes/List");
 const cors = require('cors');
+const publicPath = path.join(__dirname, '.', '/build');
 app.use(cors({
     origin: '*'
 }));
@@ -26,4 +28,13 @@ app.use(express.json()); //use json files
  app.use('/api/user',userRoute);
  app.use('/api/movies',movieRoute);
  app.use('/api/list',listRoute);
-app.listen(process.env.PORT || 5000)
+ app.use('/api/list',listRoute);
+ app.use(express.static(publicPath));
+ app.get('*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+ app.listen(3002, () => {
+  console.log(`Example app listening on port 3002`)
+})
+// app.listen(process.env.PORT || 5000);
