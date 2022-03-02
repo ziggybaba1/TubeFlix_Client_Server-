@@ -34,7 +34,7 @@ app.use(express.json()); //use json files
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
- app.listen(3002, () => {
-  console.log(`Example app listening on port 3002`)
-})
-// app.listen(process.env.PORT || 5000);
+//  app.listen(3002, () => {
+//   console.log(`Example app listening on port 3002`)
+// })
+app.listen(process.env.PORT || 5000);
